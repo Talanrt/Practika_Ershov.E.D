@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Practika_Ershov.E.D.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Practika_Ershov.E.D.Repositories;
+using System.Net;
 
 namespace Practika_Ershov.E.D.ViewModels
 {
@@ -14,6 +17,8 @@ namespace Practika_Ershov.E.D.ViewModels
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisable = true;
+
+        private IUserRepository userRepository;
 
         public string Username
         {
@@ -72,6 +77,7 @@ namespace Practika_Ershov.E.D.ViewModels
 
         public LoginViewModel()
         {
+            userRepository= new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p =>ExecuteRecoverPassCommand("",""));
         }
@@ -90,7 +96,7 @@ namespace Practika_Ershov.E.D.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
-            throw new NotImplementedException();
+            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username,Password));
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {
