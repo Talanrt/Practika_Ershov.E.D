@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Practika_Ershov.E.D.Repositories;
 using System.Net;
+using System.Threading;
+using System.Security.Principal;
 
 namespace Practika_Ershov.E.D.ViewModels
 {
@@ -97,6 +99,15 @@ namespace Practika_Ershov.E.D.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username,Password));
+            if(isValidUser)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal( new GenericIdentity(Username),null);
+                IsViewVisable = false;
+            }
+            else
+            {
+                ErrorMessage = "* Invalid username or password";
+            }
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {

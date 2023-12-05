@@ -23,5 +23,10 @@ namespace Practika_Ershov.E.D.Views
         {
             InitializeComponent();
         }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
