@@ -27,6 +27,7 @@ namespace Practika_Ershov.E.D
                     loginView.Close();
                 }
             };
+
         }   
     }
 }

@@ -28,5 +28,15 @@ namespace Practika_Ershov.E.D.Views
         {
             this.Close();
         }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var loginView = new LoginView();
+            var reg = new Registration();
+            reg.Show();
+            loginView.Close();
+                
+            
+        }
     }
 }

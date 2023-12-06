@@ -4,18 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practika_Ershov.E.D.Views"
-       xmlns:viewModel ="clr-namespace:Practika_Ershov.E.D.ViewModels" xmlns:customcontrols="clr-namespace:Practika_Ershov.E.D.CustomControls"
+        xmlns:viewModel ="clr-namespace:Practika_Ershov.E.D.ViewModels" xmlns:customcontrols="clr-namespace:Practika_Ershov.E.D.CustomControls" xmlns:local1="clr-namespace:Practika_Ershov.E.D"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        >
 
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
+    
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
@@ -25,8 +27,9 @@
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
     <Border CornerRadius="12">
+        
         <Border.Background>
-            <ImageBrush ImageSource="/Images/metro-boomin-not-all-heroes-wear-capes.jpg"
+            <ImageBrush ImageSource="/Images/Mel_4.png"
                         Stretch="None"/>
         </Border.Background>
 
@@ -38,7 +41,7 @@
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="Green" Offset="0"/>
                     <GradientStop Color="MediumSeaGreen" Offset="0.75"/>
-                    <GradientStop Color="#8A16C1" Offset="1"/>
+                    <GradientStop Color="MediumSlateBlue" Offset="1"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -48,7 +51,7 @@
                     <GradientStop Color="#1B1448" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -72,39 +75,6 @@
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"/>
 
-                    <Button x:Name="btnMinimize"                           
-                            BorderThickness="0"
-                            Content="-"
-                            Foreground="White"
-                            FontSize="16"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="1">
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#28AEED"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#278BEF"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
-
                     <Button x:Name="btnClose"                          
                             BorderThickness="0"
                             Content="X"
@@ -116,7 +86,7 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Setter Property="Background" Value="MediumSlateBlue"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#C62DAE"/>
@@ -136,6 +106,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                   
                 </Grid>
 
                 <StackPanel Width="220"
@@ -143,8 +114,12 @@
                             Orientation="Vertical"
                             Margin="0,35,0,0">
 
-                    <Image Source="/Images/NEW_LOGO.png"
-                           Width="99" Height="101"/>
+                    <Image Source="/Images/logos.png"
+                           Width="99" Height="101">
+
+                        
+                    </Image>
+
 
                     <TextBlock Text="HotelHub"
                                Foreground="White"
@@ -223,10 +198,10 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462AD8"/>
+                                <Setter Property="Background" Value="MediumSeaGreen"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28AEED"/>
+                                        <Setter Property="Background" Value="MediumSlateBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -249,24 +224,26 @@
                                 Margin="0,15,0,0">
 
                         <TextBlock Text="Forgot Password?"
-                               Foreground="DarkGray"
+                               Foreground="MediumSeaGreen"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"/>
 
-                        <TextBlock Text="Reset"
+                        <TextBlock Text="Registration"
+                                   Name="Registr"
                                Foreground="White"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Cursor="Hand"
-                               Margin="8,0,0,0"/>
+                               Margin="8,0,0,0" MouseDown="TextBlock_MouseDown" />
 
                     </StackPanel>
 
                 </StackPanel>
 
             </Grid>
+            
 
         </Border>
 
