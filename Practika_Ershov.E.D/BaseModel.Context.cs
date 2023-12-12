@@ -15,19 +15,11 @@ namespace Practika_Ershov.E.D
     
     public partial class Tour_BaseEntities : DbContext
     {
-        private static Tour_BaseEntities _context;
         public Tour_BaseEntities()
             : base("name=Tour_BaseEntities")
         {
         }
-
-        public static Tour_BaseEntities GetContext()
-        {
-            if (_context == null)
-                _context = new Tour_BaseEntities();
-            return _context;
-        }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

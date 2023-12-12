@@ -11,13 +11,13 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True"
+        AllowsTransparency="True" HorizontalAlignment="Center"
         >
 
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
-    
+
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
@@ -27,15 +27,17 @@
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
     <Border CornerRadius="12">
+
         
         <Border.Background>
             <ImageBrush ImageSource="/Images/Mel_4.png"
                         Stretch="None"/>
         </Border.Background>
 
-        <Border CornerRadius="10"                    
+        <Border x:Name="myBorder" CornerRadius="10"                    
             BorderThickness="2"
             Opacity="0.95">
+            
 
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -51,8 +53,10 @@
                     <GradientStop Color="#1B1448" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            
+
             <Grid>
+                
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
@@ -106,7 +110,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                   
+
                 </Grid>
 
                 <StackPanel Width="220"
@@ -114,11 +118,10 @@
                             Orientation="Vertical"
                             Margin="0,35,0,0">
 
-                    <Image Source="/Images/logos.png"
-                           Width="99" Height="101">
 
-                        
-                    </Image>
+                    <Image Source="/Images/logos.png" Height="105" Width="172"></Image>
+
+
 
 
                     <TextBlock Text="HotelHub"
@@ -185,12 +188,28 @@
                                FontFamily="Montserrat"                             
                                Margin="0,10,0,0"
                                TextWrapping="Wrap"/>
+                    <Grid>
+                        <TextBlock Text="Dark Mode"
+                               Foreground="White"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="25,5,80,0"/>
+
+                        <CheckBox Margin="135,4,0,0"
+                                  Name="btnTheme" Checked="btnTheme_Checked" Unchecked="btnTheme_Unchecked" />
+
+
+                    </Grid>
+                   
 
                     <Button x:Name="btnLogin" 
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
-                            Content="LOG IN"
                             Foreground="White"
+                            Content="Log in"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
@@ -217,13 +236,14 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+               
                     </Button>
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
 
-                        <TextBlock Text="Forgot Password?"
+                        <TextBlock Name="fogotPS" Text="Forgot Password?"
                                Foreground="MediumSeaGreen"
                                FontSize="12"
                                FontWeight="Medium"
@@ -236,17 +256,23 @@
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Cursor="Hand"
-                               Margin="8,0,0,0" MouseDown="TextBlock_MouseDown" />
+                               Margin="8,0,0,0" 
+                                 MouseDown="Registr_MouseDown"/>
 
                     </StackPanel>
 
+                    
+                       
                 </StackPanel>
-
+                
+                
             </Grid>
-            
+
 
         </Border>
-
+        
+        
     </Border>
+    
 
 </Window>
