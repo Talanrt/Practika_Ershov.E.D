@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practika_Ershov.E.D"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-       
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+       WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True" HorizontalAlignment="Center">
+    <Border x:Name="myBorder2" CornerRadius="12">
+
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/melka.jpeg"
+                        Stretch="None"/>
+        </Border.Background>
+
+
+        <Border CornerRadius="10"                    
+            BorderThickness="2"
+            Opacity="0.95">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="Green" Offset="0"/>
+                    <GradientStop Color="MediumSeaGreen" Offset="0.75"/>
+                    <GradientStop Color="MediumSlateBlue" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="MediumSeaGreen" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+    </Border>
 </Window>

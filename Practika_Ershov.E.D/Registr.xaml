@@ -13,7 +13,7 @@
         AllowsTransparency="True" HorizontalAlignment="Center">
 
    
-    <Border CornerRadius="12">
+    <Border x:Name="myBorder2" CornerRadius="12">
 
         <Border.Background>
             <ImageBrush ImageSource="/Images/melka.jpeg"
@@ -85,7 +85,7 @@
                                HorizontalAlignment="Center"/>
 
 
-                    <TextBlock Text="Логин:"
+                    <TextBlock Text="Login:"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -110,7 +110,7 @@
                                         AlignmentX="Left"/>
                         </TextBox.Background>
                     </TextBox>
-                    <TextBlock Text="Пароль:"
+                    <TextBlock Text="Password:"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -136,7 +136,7 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Имя:"
+                    <TextBlock Text="Name:"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -162,7 +162,7 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Фамилия:"
+                    <TextBlock Text="Last name:"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -188,7 +188,7 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Почта:"
+                    <TextBlock Text="Mail:"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -224,6 +224,8 @@
                             Cursor="Hand"                           
                             Margin="0,45,0,0" Click="btnReg_Click">
 
+                        
+
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="MediumSeaGreen"/>
@@ -247,6 +249,7 @@
                         </Button.Template>
                     </Button>
                 </StackPanel>
+               
             </Grid>
 
         </Border>

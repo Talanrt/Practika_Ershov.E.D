@@ -21,6 +21,7 @@ namespace Practika_Ershov.E.D.ViewModels
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
+        private IAdminInterface adminInterface;
 
         public string Username
         {
@@ -83,6 +84,7 @@ namespace Practika_Ershov.E.D.ViewModels
         public LoginViewModel()
         {
             userRepository = new UserRepository();
+            adminInterface = new AdminRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
@@ -102,10 +104,26 @@ namespace Practika_Ershov.E.D.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+            var isValidAdmin = adminInterface.AuthenticateAdmin(new NetworkCredential(Username, Password));
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
+            }
+            else
+            {
+                ErrorMessage = "* Invalid username or password";
+            }
+
+            if (isValidAdmin)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                IsViewVisible = false;
+                var admin = new AdminWin();
+                var main = new MainWindow();
+                admin.Show();
+               
+                
             }
             else
             {

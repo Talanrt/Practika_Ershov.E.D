@@ -9,27 +9,30 @@ using System.Threading.Tasks;
 
 namespace Practika_Ershov.E.D.Repositories
 {
-    public class UserRepository : RepositoryBase, IUserRepository
+    public class AdminRepository : RepositoryBase, IAdminInterface
     {
         public void Add(UserModel userModel)
         {
             throw new NotImplementedException();
         }
-
-        public bool AuthenticateUser(NetworkCredential credential)
+        public bool AuthenticateAdmin(NetworkCredential credential)
         {
-            bool validUser;
+            bool validAdmin;
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
-                command.Connection= connection;
-                command.CommandText = "select *from[User] where Username=@Username and [Password]=@Password";
-                command.Parameters.Add("@Username",System.Data.SqlDbType.NVarChar).Value = credential.UserName;
-                command.Parameters.Add("@Password", System.Data.SqlDbType.NVarChar).Value = credential.Password;
-                validUser = command.ExecuteScalar() == null ? false : true;
+                command.Connection = connection;
+                command.CommandText = "select *from[admins] where username=@username and [password]=@password";
+                command.Parameters.Add("@username", System.Data.SqlDbType.NVarChar).Value = credential.UserName;
+                command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar).Value = credential.Password;
+                validAdmin = command.ExecuteScalar() == null ? false : true;
             }
-                return validUser;
+            return validAdmin;
+        }
+        public bool AuthenticateUser(NetworkCredential credential)
+        {
+            throw new NotImplementedException();
         }
 
         public void Edit(UserModel userModel)
@@ -37,7 +40,7 @@ namespace Practika_Ershov.E.D.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserModel> GetByAll()
+        public IEnumerable<AdminModel> GetByAll()
         {
             throw new NotImplementedException();
         }
@@ -56,7 +59,5 @@ namespace Practika_Ershov.E.D.Repositories
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }

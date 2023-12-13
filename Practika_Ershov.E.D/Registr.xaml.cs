@@ -29,9 +29,9 @@ namespace Practika_Ershov.E.D
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            var log = new LoginView();
+            LoginView lp = new LoginView();
+            lp.Show();
             this.Close();
-            log.Show();
         }
 
         private void btnReg_Click(object sender, RoutedEventArgs e)
@@ -70,5 +70,7 @@ namespace Practika_Ershov.E.D
 
             }
         }
+
+       
     }
 }

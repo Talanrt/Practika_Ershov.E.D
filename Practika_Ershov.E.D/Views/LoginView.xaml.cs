@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace Practika_Ershov.E.D.Views
             myBorder.Background = new SolidColorBrush(Colors.DimGray);
             fogotPS.Foreground = new SolidColorBrush(Colors.Black);
             btnLogin.Background= new SolidColorBrush(Colors.Gray);
+            
         }
 
         private void btnTheme_Unchecked(object sender, RoutedEventArgs e)
@@ -72,23 +74,48 @@ namespace Practika_Ershov.E.D.Views
                                 }
             };
         }
+        
+        //private bool CheckCredentials(string username, string password)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+
+        //            string query = "SELECT COUNT(*) FROM admins WHERE username = @username AND password = @password";
+        //            SqlCommand command = new SqlCommand(query, connection);
+        //            command.Parameters.AddWithValue("@username", username);
+        //            command.Parameters.AddWithValue("@password", password);
+
+        //            int count = (int)command.ExecuteScalar();
+        //            return count > 0;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("An error occurred: " + ex.Message);
+        //            return false;
+        //        }
+        //    }
+        //}
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            //string username = txtUser.Text;
+            //string password = pass.ToString();
+
+            //if (CheckCredentials(username, password))
+            //{
+            //    AdminWin adminWin = new AdminWin();
+            //    adminWin.Show();
+            //    Close();
+            //}
+
+        }
 
 
 
-        //<Border.BorderBrush>
-        //        <LinearGradientBrush StartPoint = "0,0" EndPoint="1,1">
-        //            <GradientStop Color = "Green" Offset="0"/>
-        //            <GradientStop Color = "MediumSeaGreen" Offset="0.75"/>
-        //            <GradientStop Color = "MediumSlateBlue" Offset="1"/>
-        //        </LinearGradientBrush>
-        //    </Border.BorderBrush>
-
-        //    <Border.Background>
-        //        <LinearGradientBrush StartPoint = "0,1" EndPoint="1,0">
-        //            <GradientStop Color = "MediumSeaGreen" Offset="0"/>
-        //            <GradientStop Color = "#1B1448" Offset="1"/>
-        //        </LinearGradientBrush>
-        //    </Border.Background>
+       
     }
 
 }
