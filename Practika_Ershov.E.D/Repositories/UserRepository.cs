@@ -31,7 +31,34 @@ namespace Practika_Ershov.E.D.Repositories
             }
                 return validUser;
         }
+        public List<UserModel> GetAllUsers()
+        {
+            List<UserModel> users = new List<UserModel>();
 
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand("select * from [User]", connection))
+            {
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var user = new UserModel
+                        {
+                            Id = Convert.ToInt32(reader["Id"]).ToString(),
+                            Username = reader["Username"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            Email = reader["Email"].ToString()
+                        };
+                        users.Add(user);
+                    }
+                }
+            }
+            return users;
+        }
         public void Edit(UserModel userModel)
         {
             throw new NotImplementedException();

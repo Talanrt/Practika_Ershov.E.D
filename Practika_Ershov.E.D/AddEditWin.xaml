@@ -1,93 +1,62 @@
-﻿<Window x:Class="Practika_Ershov.E.D.Registr"
+﻿<Window x:Class="Practika_Ershov.E.D.AddEditWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practika_Ershov.E.D"
         mc:Ignorable="d"
-        Title="Registr" Height="550" Width="800"
-          WindowStyle="None"
+        Title="AddEditWin" Height="450" Width="800"
+         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True" HorizontalAlignment="Center">
-
-   
     <Border x:Name="myBorder2" CornerRadius="12">
 
-        <Border.Background>
-            <ImageBrush ImageSource="/Images/melka.jpeg"
-                        Stretch="None"/>
-        </Border.Background>
+        
 
 
         <Border CornerRadius="10"                    
             BorderThickness="2"
-            Opacity="0.95"
-            Style="{DynamicResource DarkTheme}">
+            Opacity="0.95" Margin="222,66,222,47">
 
-            
-            <Grid Height="546" VerticalAlignment="Bottom">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="Green" Offset="0"/>
+                    <GradientStop Color="MediumSeaGreen" Offset="0.75"/>
+                    <GradientStop Color="MediumSlateBlue" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
 
-                <Button x:Name="btnClose"                          
-                            BorderThickness="0"
-                            Content="X"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="2" Click="btnClose_Click">
-
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="MediumSlateBlue"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#C62DAE"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}" Margin="760,0,0,507" RenderTransformOrigin="0.611,0.389">
-                                <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="MediumSeaGreen" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                
                 <StackPanel
                             Orientation="Vertical"
-                            Margin="292,14,292,5" Width="170" Height="480">
-
-                    <TextBlock Text="Registration"
-                               Foreground="White"
-                               FontSize="22"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               HorizontalAlignment="Center"/>
+                            Margin="108,10,108,10">
 
 
-                    <TextBlock Text="Login:"
-                               Foreground="DarkGray"
-                               FontSize="12"
+                    <TextBlock Text="Change login:"
+                               Foreground="Black"
+                               FontSize="10"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
                                Margin="0,25,0,0"/>
 
-                    <TextBox x:Name="Login"
+                    <TextBox x:Name="ChangeLoginUser"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
                              Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             CaretBrush="Black"
+                             BorderBrush="Black"
                              BorderThickness="0,0,0,2"
-                             Height="28"
+                             Height="14"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
@@ -97,48 +66,22 @@
                                         AlignmentX="Left"/>
                         </TextBox.Background>
                     </TextBox>
-                    <TextBlock Text="Password:"
-                               Foreground="DarkGray"
-                               FontSize="12"
+                    <TextBlock Text="Change password:"
+                               Foreground="Black"
+                               FontSize="9"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,25,0,0"/>
+                               Margin="0,15,0,0"/>
 
-                    <TextBox x:Name="Password"
+                    <TextBox x:Name="ChangePasswordUser"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
                              Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             CaretBrush="Black"
+                             BorderBrush="Black"
                              BorderThickness="0,0,0,2"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             Padding="20,0,0,0">
-
-                        <TextBox.Background>
-                            <ImageBrush Stretch="None"
-                                        AlignmentX="Left"/>
-                        </TextBox.Background>
-                    </TextBox>
-
-                    <TextBlock Text="Name:"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"                             
-                               Margin="0,25,0,0"/>
-
-                    <TextBox x:Name="Name"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,2"
-                             Height="28"
+                             Height="14"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
@@ -149,22 +92,22 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Last name:"
-                               Foreground="DarkGray"
-                               FontSize="12"
+                    <TextBlock Text="Change name:"
+                               Foreground="Black"
+                               FontSize="9"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,25,0,0"/>
+                               Margin="0,15,0,0"/>
 
-                    <TextBox x:Name="Familya"
+                    <TextBox x:Name="ChangeNameUser"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
                              Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             CaretBrush="Black"
+                             BorderBrush="Black"
                              BorderThickness="0,0,0,2"
-                             Height="28"
+                             Height="14"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
@@ -175,22 +118,22 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Mail:"
-                               Foreground="DarkGray"
-                               FontSize="12"
+                    <TextBlock Text="Change last name:"
+                               Foreground="Black"
+                               FontSize="9"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,25,0,0"/>
+                               Margin="0,15,0,0"/>
 
-                    <TextBox x:Name="Pochta"
+                    <TextBox x:Name="ChangeFamilyaUser"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
                              Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             CaretBrush="Black"
+                             BorderBrush="Black"
                              BorderThickness="0,0,0,2"
-                             Height="28"
+                             Height="14"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
@@ -201,24 +144,50 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <Button x:Name="btnReg" 
-                          
+                    <TextBlock Text="Change mail:"
+                               Foreground="Black"
+                               FontSize="9"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,15,0,0"/>
+
+                    <TextBox x:Name="ChangePochtaUser"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             CaretBrush="Black"
+                             BorderBrush="Black"
+                             BorderThickness="0,0,0,2"
+                             Height="14"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Padding="20,0,0,0">
+
+                        <TextBox.Background>
+                            <ImageBrush Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <Button x:Name="btnChange" 
+                            Click="btnChange_Click"
                             BorderThickness="0"
-                            Content="Sign up"
+                            Content="Add user"
                             Foreground="White"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
-                            Margin="0,45,0,0" Click="btnReg_Click">
+                            Margin="0,15,0,0" Width="136" Height="38">
 
-                        
+
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="MediumSeaGreen"/>
+                                <Setter Property="Background" Value="MediumSlateBlue"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="MediumSlateBlue"/>
+                                        <Setter Property="Background" Value="MediumSpringGreen"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -226,7 +195,7 @@
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
+                                <Border Width="80" Height="35"
                                         CornerRadius="20"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
@@ -235,10 +204,13 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                </StackPanel>
-               
-            </Grid>
+                    <TextBlock MouseDown="TextBlock_MouseDown" Text="Back" Width="29" Margin="0,5,0,0"/>
 
+                </StackPanel>
+            </Grid>
+            
+            
         </Border>
+        
     </Border>
 </Window>

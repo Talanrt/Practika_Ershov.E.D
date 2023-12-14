@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practika_Ershov.E.D"
+        xmlns:viewModel="clr-namespace:Practika_Ershov.E.D.ViewModels"
         xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="AdminWin" Height="450" Width="800"
@@ -12,6 +13,32 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True" HorizontalAlignment="Center" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <viewModel:LoginViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="DataGrid" x:Key="dataGrid">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="RowBackground" Value="Transparent" />
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="GridLinesVisibility" Value="None" />
+        </Style>
+        <Style TargetType="DataGridColumnHeader" >
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridColumnHeader">
+                        <Border Background="MediumSlateBlue">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+    </Window.Resources>
     <Border x:Name="myBorder2" CornerRadius="12" MouseDown="myBorder2_MouseDown" MouseLeftButtonDown="myBorder2_MouseLeftButtonDown">
 
         <Border.Background>
@@ -22,22 +49,9 @@
 
         <Border CornerRadius="10"                    
             BorderThickness="2"
-            Opacity="0.95">
+            Opacity="0.95"
+            Style="{DynamicResource DarkTheme}">
 
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="Green" Offset="0"/>
-                    <GradientStop Color="MediumSeaGreen" Offset="0.75"/>
-                    <GradientStop Color="MediumSlateBlue" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="MediumSeaGreen" Offset="0"/>
-                    <GradientStop Color="#1B1448" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -52,25 +66,37 @@
 
                 <Border Grid.Row="1"  Background="MediumSeaGreen" CornerRadius="0 50 50 0" Margin="0,35,0,27">
                     <StackPanel DockPanel.Dock="Top">
-                        <Button x:Name="addUserButton"  Click="addUserButton_Click" Style="{StaticResource MenuBtn}" Margin="0,80,0,0">
+
+                        <Button x:Name="CheckUsers"  Click="CheckUsers_Click" Style="{DynamicResource MenuBtn}" Margin="0,80,0,0">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Style="{StaticResource menuBtnIcon}" Kind="AccountMultiplePlus"  HorizontalAlignment="Left"/>
+                                <Icon:PackIconMaterial Style="{DynamicResource menuBtnIcon}" Kind="AccountMultipleCheckOutline"  HorizontalAlignment="Left"/>
+                                <TextBlock Text="View users"/>
+                            </StackPanel>
+
+                        </Button>
+
+
+
+                        <Button x:Name="addUserButton"  Click="addUserButton_Click" Style="{DynamicResource MenuBtn}" Margin="0,40,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Style="{DynamicResource menuBtnIcon}" Kind="AccountMultiplePlus"  HorizontalAlignment="Left"/>
                                 <TextBlock Text="Add user"/>
                             </StackPanel>
 
                         </Button>
 
-                        <Button  x:Name="addAdminButton" Click="addAdminButton_Click" Style="{StaticResource MenuBtn}" Margin="0,40,0,0">
+
+                        <Button  x:Name="addAdminButton" Click="addAdminButton_Click" Style="{DynamicResource MenuBtn}" Margin="0,40,0,0">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Style="{StaticResource menuBtnIcon}" Kind="AccountPlus" HorizontalAlignment="Left"/>
+                                <Icon:PackIconMaterial Style="{DynamicResource menuBtnIcon}" Kind="AccountPlus" HorizontalAlignment="Left"/>
                                 <TextBlock Text="Add admin"/>
                             </StackPanel>
 
                         </Button>
 
-                        <Button x:Name="btnLogout" Click="btnLogout_Click" Style="{StaticResource MenuBtn}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom"  Margin="0,40,0,0">
+                        <Button x:Name="btnLogout" Click="btnLogout_Click" Style="{DynamicResource MenuBtn}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom"  Margin="0,40,0,0">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Style="{StaticResource menuBtnIcon}" Kind="Logout" HorizontalAlignment="Left"/>
+                                <Icon:PackIconMaterial Style="{DynamicResource menuBtnIcon}" Kind="Logout" HorizontalAlignment="Left"/>
                                 <TextBlock Text="Logout"/>
                             </StackPanel>
 
@@ -92,6 +118,7 @@
                                Margin="0,25,0,0"/>
 
                         <TextBox x:Name="LoginUser"
+                                  
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -117,6 +144,7 @@
                                Margin="0,15,0,0"/>
 
                         <TextBox x:Name="PasswordUser"
+                                 
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -143,6 +171,7 @@
                                Margin="0,15,0,0"/>
 
                         <TextBox x:Name="NameUser"
+                                 
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -169,6 +198,7 @@
                                Margin="0,15,0,0"/>
 
                         <TextBox x:Name="FamilyaUser"
+                                  
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -347,6 +377,88 @@
                         </Button>
                     </StackPanel>
 
+                </Border>
+
+                <Border Grid.Column="1" x:Name="border_checkUsers" Background="MediumSeaGreen" CornerRadius="50 50 50 50" Margin="18,35,18,27" Grid.Row="1">
+                    <Grid>
+                        <DataGrid Style ="{StaticResource dataGrid}" HeadersVisibility="Column" x:Name="DGridHotels" AutoGenerateColumns="False"  ItemsSource="{Binding Users}" IsReadOnly="True" Margin="10,32,10,102">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="80"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Password" Binding="{Binding Password}" Width="80"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="80"></DataGridTextColumn>
+                                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" Width="80"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="80"></DataGridTextColumn>
+                                <DataGridTemplateColumn Width="auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Редактировать" Click ="BtnEdit_Click" Name="BtnEdit">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Background" Value="MediumSeaGreen"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="MediumSlateBlue"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                                            <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+
+                                            </Button>
+
+                                        </DataTemplate>
+
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button x:Name="Delete" 
+                           Click="Delete_Click"
+                            BorderThickness="0"
+                            Foreground="White"
+                            Content="Delete"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Height="44" Margin="176,309,176,31">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="MediumSpringGreen"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="MediumSlateBlue"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Width="180" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+
+
+
+                    </Grid>
                 </Border>
             </Grid>
 

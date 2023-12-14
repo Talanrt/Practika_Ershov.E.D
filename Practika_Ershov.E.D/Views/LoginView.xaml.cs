@@ -41,38 +41,17 @@ namespace Practika_Ershov.E.D.Views
         
         private void btnTheme_Checked(object sender, RoutedEventArgs e)
         {
-            myBorder.BorderBrush = new SolidColorBrush(Colors.DimGray);
-            myBorder.Background = new SolidColorBrush(Colors.DimGray);
-            fogotPS.Foreground = new SolidColorBrush(Colors.Black);
-            btnLogin.Background= new SolidColorBrush(Colors.Gray);
-            
+            ResourceDictionary dark = new ResourceDictionary();
+            dark.Source = new Uri("Dark.xaml", UriKind.Relative);
+            Application.Current.Resources.MergedDictionaries.Add(dark);
+
         }
 
         private void btnTheme_Unchecked(object sender, RoutedEventArgs e)
         {
-            fogotPS.Foreground = new SolidColorBrush(Colors.MediumSeaGreen);
-            btnLogin.Background = new SolidColorBrush(Colors.MediumSeaGreen);
-            myBorder.BorderBrush = new LinearGradientBrush
-            {
-                StartPoint = new Point(0, 0),
-                EndPoint = new Point(1, 1),
-                GradientStops =
-                            {
-                            new GradientStop(Colors.Green, 0),
-                            new GradientStop(Colors.MediumSeaGreen, 0.75),
-                            new GradientStop(Colors.MediumSlateBlue, 1)
-                            }
-            };
-            myBorder.Background = new LinearGradientBrush
-            {
-                StartPoint = new Point(0, 1),
-                EndPoint = new Point(1, 0),
-                GradientStops =
-                                {
-                                new GradientStop(Colors.MediumSeaGreen, 0),
-                                new GradientStop((Color)ColorConverter.ConvertFromString("#1B1448"), 1)
-                                }
-            };
+            ResourceDictionary Light = new ResourceDictionary();
+            Light.Source = new Uri("Light.xaml", UriKind.Relative);
+            Application.Current.Resources.MergedDictionaries.Add(Light);
         }
         
         //private bool CheckCredentials(string username, string password)

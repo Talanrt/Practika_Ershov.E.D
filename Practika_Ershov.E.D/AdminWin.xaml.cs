@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -91,6 +92,7 @@ namespace Practika_Ershov.E.D
         private void addUserButton_Click(object sender, RoutedEventArgs e)
         {
             border_admin.Visibility = Visibility.Hidden;
+            border_checkUsers.Visibility = Visibility.Hidden;
             border_user.Visibility = Visibility.Visible; 
            
         }
@@ -99,6 +101,7 @@ namespace Practika_Ershov.E.D
         {
             border_user.Visibility= Visibility.Hidden;
             border_admin.Visibility= Visibility.Hidden;
+            border_checkUsers.Visibility= Visibility.Hidden;
         }
 
         private void btnAddAdmin_Click(object sender, RoutedEventArgs e)
@@ -132,6 +135,7 @@ namespace Practika_Ershov.E.D
         private void addAdminButton_Click(object sender, RoutedEventArgs e)
         {
             border_user.Visibility = Visibility.Hidden;
+            border_checkUsers.Visibility = Visibility.Hidden;
             border_admin.Visibility = Visibility.Visible;
         }
 
@@ -141,6 +145,41 @@ namespace Practika_Ershov.E.D
             this.Close();
             Log.Show();
             
+        }
+
+        private void CheckUsers_Click(object sender, RoutedEventArgs e)
+        {
+            border_admin.Visibility = Visibility.Hidden;
+            border_user.Visibility = Visibility.Hidden;
+            border_checkUsers.Visibility = Visibility.Visible;
+
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditWin addEdit = new AddEditWin(null);
+            addEdit.Show();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var usersForRemoving = DGridHotels.SelectedItems.Cast<User>().ToList();
+
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {usersForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Tour_BaseEntities1.GetContext().User.RemoveRange(usersForRemoving);
+                    Tour_BaseEntities1.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены");
+                    DGridHotels.ItemsSource = Tour_BaseEntities1.GetContext().User.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
+            }
         }
     }
 }

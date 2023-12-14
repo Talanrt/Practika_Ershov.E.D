@@ -10,6 +10,7 @@ using Practika_Ershov.E.D.Repositories;
 using System.Net;
 using System.Threading;
 using System.Security.Principal;
+using System.Collections.ObjectModel;
 
 namespace Practika_Ershov.E.D.ViewModels
 {
@@ -22,7 +23,18 @@ namespace Practika_Ershov.E.D.ViewModels
 
         private IUserRepository userRepository;
         private IAdminInterface adminInterface;
+        public UserRepository dbLog = new UserRepository();
+        private ObservableCollection<UserModel> users;
 
+        public ObservableCollection<UserModel> Users
+        {
+            get => users;
+            set
+            {
+                users = value;
+                OnPropertyChanged(nameof(Users));
+            }
+        }
         public string Username
         {
             get
@@ -87,6 +99,7 @@ namespace Practika_Ershov.E.D.ViewModels
             adminInterface = new AdminRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
+            Users = new ObservableCollection<UserModel>(dbLog.GetAllUsers());
         }
 
 
