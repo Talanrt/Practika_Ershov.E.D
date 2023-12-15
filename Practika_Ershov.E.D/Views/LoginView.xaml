@@ -11,7 +11,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True" HorizontalAlignment="Center"
+        AllowsTransparency="True" HorizontalAlignment="Center" Loaded="Window_Loaded"
         >
 
     <Window.DataContext>
@@ -123,6 +123,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+     
     </Window.Resources>
 
     <Window.Visibility>
@@ -263,11 +264,29 @@
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
 
-                    <customcontrols:BindablePasswordBox x:Name="pass" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <!--<customcontrols:BindablePasswordBox x:Name="pass" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Height="28"                            
                                                         Margin="0,5,0,0">
-                    </customcontrols:BindablePasswordBox>
+                    </customcontrols:BindablePasswordBox>-->
 
+                    <TextBox x:Name="txtPassword" 
+                             Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="13"
+                             
+                             FontWeight="Medium"
+                             FontFamily="Wingdings"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2" 
+                             
+                             VerticalContentAlignment="Center"                          
+                             Padding="20,0,0,0" Margin="0,0,0,0" Height="28">
+
+                        <TextBox.Background>
+                            <ImageBrush Stretch="None" AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
 
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#D7596D"

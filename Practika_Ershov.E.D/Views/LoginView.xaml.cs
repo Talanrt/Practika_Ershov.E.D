@@ -92,9 +92,11 @@ namespace Practika_Ershov.E.D.Views
 
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+          
 
-
-       
+        }
     }
 
 }

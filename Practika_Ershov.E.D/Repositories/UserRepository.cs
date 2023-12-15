@@ -1,9 +1,11 @@
 ﻿using Practika_Ershov.E.D.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,10 +61,7 @@ namespace Practika_Ershov.E.D.Repositories
             }
             return users;
         }
-        public void Edit(UserModel userModel)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public IEnumerable<UserModel> GetByAll()
         {
@@ -84,6 +83,23 @@ namespace Practika_Ershov.E.D.Repositories
             throw new NotImplementedException();
         }
 
-        
+        public void Edit(string ChangeLoginUser,string ChangePassword, string ChangeNameUser, string ChangeFamilyaUser, string ChangePochtaUser)
+        {
+            
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "UPDATE [User] SET Password = @Password,  Email = @Email, Name = @Name,LastName = @LastName where Username = @Username";
+                    command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = ChangeLoginUser;
+                    command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = ChangePassword;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = ChangeNameUser;
+                    command.Parameters.Add("@LastName", SqlDbType.NChar).Value = ChangeFamilyaUser;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = ChangePochtaUser;
+                    command.ExecuteNonQuery();
+                }
+            
+        }
     }
 }

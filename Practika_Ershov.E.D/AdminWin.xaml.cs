@@ -1,10 +1,15 @@
-﻿using Practika_Ershov.E.D.Views;
+﻿using Practika_Ershov.E.D.Models;
+using Practika_Ershov.E.D.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -18,11 +23,21 @@ namespace Practika_Ershov.E.D
     /// </summary>
     public partial class AdminWin : Window
     {
+
+        //Tour_BaseEntities1 TE = new Tour_BaseEntities1();
         public AdminWin()
         {
+            
             InitializeComponent();
+           // loadgrid();
+            
         }
+        //private void loadgrid()
+        //{
+        //    var data = from r in TE.Employees select r;
+        //}
 
+       
         private void myBorder2_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -32,6 +47,9 @@ namespace Practika_Ershov.E.D
 
         }
         private bool IsMaximized = false;
+
+        
+
         private void myBorder2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if(e.ClickCount== 2) 
@@ -102,6 +120,17 @@ namespace Practika_Ershov.E.D
             border_user.Visibility= Visibility.Hidden;
             border_admin.Visibility= Visibility.Hidden;
             border_checkUsers.Visibility= Visibility.Hidden;
+            //обновление таблицы
+            //SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Tour_Base;Integrated Security=True");
+            //connection.Open();
+            //string cmd = "SELECT * FROM User"; // Из какой таблицы нужен вывод
+            //SqlCommand createCommand = new SqlCommand(cmd, connection);
+            //createCommand.ExecuteNonQuery();
+            //SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            //DataTable dt = new DataTable("User");
+            //dataAdp.Fill(dt);
+            //DGridHotels.ItemsSource = dt.DefaultView;
+            //connection.Close();
         }
 
         private void btnAddAdmin_Click(object sender, RoutedEventArgs e)
@@ -155,30 +184,56 @@ namespace Practika_Ershov.E.D
 
         }
 
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddEditWin addEdit = new AddEditWin(null);
+            AddEditWin addEdit = new AddEditWin();
             addEdit.Show();
         }
 
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Tour_Base;Integrated Security=True");
+            connection.Open();
+            string cmd = "SELECT * FROM [User]";
+            SqlCommand createCommand = new SqlCommand(cmd, connection);
+            createCommand.ExecuteNonQuery();
+            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            DataTable dt = new DataTable("User");
+            dataAdp.Fill(dt);
+            DGridHotels.ItemsSource = dt.DefaultView;
+            connection.Close();
+
+
+        }
+        private void Delete_User(int Id)
+        {
+            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Tour_Base;Integrated Security=True");
+            string cmd = "DELETE FROM [User] WHERE Id = @Id";
+            SqlCommand deleteCommand = new SqlCommand(cmd, connection);
+            deleteCommand.Parameters.AddWithValue("@Id", Id);
+
+            try
+            {
+                connection.Open();
+                deleteCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+       
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var usersForRemoving = DGridHotels.SelectedItems.Cast<User>().ToList();
-
-            if (MessageBox.Show($"Вы точно хотите удалить следующие {usersForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (DGridHotels.SelectedItem != null && DGridHotels.SelectedItem is DataRowView)
             {
-                try
-                {
-                    Tour_BaseEntities1.GetContext().User.RemoveRange(usersForRemoving);
-                    Tour_BaseEntities1.GetContext().SaveChanges();
-                    MessageBox.Show("Данные удалены");
-                    DGridHotels.ItemsSource = Tour_BaseEntities1.GetContext().User.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
-
+                DataRowView row = (DataRowView)DGridHotels.SelectedItem;
+                int userId = Convert.ToInt32(row["Id"]); 
+                Delete_User(userId);
             }
         }
     }

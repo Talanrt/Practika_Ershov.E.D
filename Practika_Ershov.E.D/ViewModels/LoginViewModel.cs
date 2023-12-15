@@ -11,13 +11,18 @@ using System.Net;
 using System.Threading;
 using System.Security.Principal;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Xml.Linq;
 
 namespace Practika_Ershov.E.D.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
         private string _username;
-        private SecureString _password;
+        private string _password;
+        private string _name;
+        private string _lastname;
+        private string _email;
         private string _errorMessage;
         private bool _isViewVisible = true;
 
@@ -25,6 +30,8 @@ namespace Practika_Ershov.E.D.ViewModels
         private IAdminInterface adminInterface;
         public UserRepository dbLog = new UserRepository();
         private ObservableCollection<UserModel> users;
+        private IUserRepository userEditor;
+        
 
         public ObservableCollection<UserModel> Users
         {
@@ -48,7 +55,7 @@ namespace Practika_Ershov.E.D.ViewModels
             }
         }
 
-        public SecureString Password
+        public string Password
         {
             get
             {
@@ -59,6 +66,43 @@ namespace Practika_Ershov.E.D.ViewModels
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+        public string LastName
+        {
+            get
+            {
+                return _lastname;
+            }
+            set
+            {
+                _lastname = value;
+                OnPropertyChanged(nameof(LastName));
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                _email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
         public string ErrorMessage
@@ -87,11 +131,21 @@ namespace Practika_Ershov.E.D.ViewModels
                 OnPropertyChanged(nameof(IsViewVisible));
             }
         }
+        private void Edit(object parameter)
+        {
+            userEditor.Edit(Username, Password, Name,LastName,Email);
+            string message = "Пользователь был отредактирован.";
+            MessageBox.Show(message);
+        }
+        
 
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }
+        public ICommand EditCommand { get;  set; }
+    
+
 
         public LoginViewModel()
         {
@@ -100,6 +154,8 @@ namespace Practika_Ershov.E.D.ViewModels
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
             Users = new ObservableCollection<UserModel>(dbLog.GetAllUsers());
+            userEditor = new UserRepository();
+            EditCommand = new ViewModelCommand(Edit);
         }
 
 
