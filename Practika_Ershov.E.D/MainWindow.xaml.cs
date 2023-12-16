@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,26 @@ namespace Practika_Ershov.E.D
         public MainWindow()
         {
             InitializeComponent();
+           
+        }
+
+       
+
+        private void CheckHotels_Click(object sender, RoutedEventArgs e)
+        {
+            border_main.Visibility = Visibility.Visible;
+        }
+
+       
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            border_main.Visibility = Visibility.Hidden;
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

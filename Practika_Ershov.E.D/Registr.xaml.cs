@@ -71,6 +71,10 @@ namespace Practika_Ershov.E.D
             }
         }
 
-       
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWin Set = new SettingsWin();    
+            Set.Show();
+        }
     }
 }

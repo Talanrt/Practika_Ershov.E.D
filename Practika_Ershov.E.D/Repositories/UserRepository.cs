@@ -61,7 +61,8 @@ namespace Practika_Ershov.E.D.Repositories
             }
             return users;
         }
-      
+        
+
 
         public IEnumerable<UserModel> GetByAll()
         {

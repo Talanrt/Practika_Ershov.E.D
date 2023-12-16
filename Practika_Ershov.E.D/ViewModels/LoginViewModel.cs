@@ -137,6 +137,8 @@ namespace Practika_Ershov.E.D.ViewModels
             string message = "Пользователь был отредактирован.";
             MessageBox.Show(message);
         }
+
+        
         
 
         public ICommand LoginCommand { get; }

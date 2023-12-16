@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practika_Ershov.E.D.Views"
+        xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:viewModel ="clr-namespace:Practika_Ershov.E.D.ViewModels" xmlns:customcontrols="clr-namespace:Practika_Ershov.E.D.CustomControls" xmlns:local1="clr-namespace:Practika_Ershov.E.D"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
@@ -21,109 +22,8 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
-        <Style TargetType="{x:Type CheckBox}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type CheckBox}">
-                        <ControlTemplate.Resources>
-                            <SolidColorBrush x:Key="fillBrush">MediumSeaGreen</SolidColorBrush>
-                            <SolidColorBrush x:Key="borderBrush">Gray</SolidColorBrush>
-                        </ControlTemplate.Resources>
-                        <Grid  Background="Transparent" SnapsToDevicePixels="True"
-                           Height="18"  
-                           >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="34" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid  x:Name="markGrid" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Rectangle Fill="Transparent" Height="16" x:Name="moveEllipse"
-                                       >
-                                    <Rectangle.Style>
-                                        <Style TargetType="Rectangle">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
-                                                    <DataTrigger.EnterActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation From="0" To="16" Duration="0:0:0.4" 
-                                              Storyboard.TargetProperty="Width" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </DataTrigger.EnterActions>
-                                                    <DataTrigger.ExitActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation To="0" Duration="0:0:0.4" 
-                                                         Storyboard.TargetProperty="Width"/>
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </DataTrigger.ExitActions>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Rectangle.Style>
-                                </Rectangle>
-                                <Rectangle RadiusX="6" RadiusY="6" 
-                                       Grid.ColumnSpan="2"
-                                       Name="line"
-                                       StrokeThickness=".8"
-                                       IsHitTestVisible="False"
-                                       Margin="1,4,1,4"
-                                 >
-                                    <Rectangle.Style>
-                                        <Style TargetType="{x:Type Rectangle}">
-                                            <Setter Property="Fill" Value="LightGray"/>
-                                        </Style>
-                                    </Rectangle.Style>
-                                </Rectangle>
-                                <Ellipse Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                                     StrokeThickness=".8"
-                                     Name="spot"
-                                     Grid.Column="1"
-                                     HorizontalAlignment="Left"
-                                     >
-                                    <Ellipse.Style>
-                                        <Style TargetType="Ellipse">
-                                            <Setter Property="Fill" Value="MediumSeaGreen"/>
-                                            <Setter Property="Stroke" Value="MediumSeaGreen"/>
-                                        </Style>
-                                    </Ellipse.Style>
-                                </Ellipse>
 
-                            </Grid>
-                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Stroke" TargetName="line" Value="DarkGray"/>
-                                <Setter Property="Stroke" TargetName="spot" Value="DarkGray"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Opacity"  Value=".5"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Stroke" TargetName="line" Value="Black"/>
-                                <Setter Property="Stroke" TargetName="spot" Value="Black"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Fill" TargetName="line" Value="MediumSeaGreen"/>
-                                <Setter Property="Fill" TargetName="spot" Value="DimGray"/>
-                                <Setter Property="Stroke" TargetName="spot" Value="MediumSeaGreen"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="{x:Null}">
-                                <Setter Property="Fill" TargetName="line" Value="lightGray"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-     
+
     </Window.Resources>
 
     <Window.Visibility>
@@ -131,7 +31,7 @@
     </Window.Visibility>
     <Border CornerRadius="12">
 
-        
+
         <Border.Background>
             <ImageBrush ImageSource="/Images/Mel_4.png"
                         Stretch="None"/>
@@ -141,11 +41,11 @@
             BorderThickness="2"
             Opacity="0.95"
              Style="{DynamicResource DarkTheme}">
-            
+
 
             <Grid>
-                
-                
+
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
@@ -160,13 +60,52 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="LOG IN"
-                               Foreground="DarkGray"
-                               FontSize="10"
-                               FontFamily="Montserrat"
-                               Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Margin="10,0,0,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="Setting"                          
+                            BorderThickness="0"
+                            Content="⚙️ "
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2" Click="Setting_Click" Margin="10,4,0,0">
+
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="MediumSlateBlue"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C62DAE"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+
+                                <ControlTemplate TargetType="Button">
+
+                                    <Border Width="48" Height="22"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+                        <TextBlock Text="Settings"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   FontFamily="Montserrat"
+                                   Height="16" Width="59" Margin="10,4,0,0"/>
+                    </StackPanel>
+
+
+
+
 
                     <Button x:Name="btnClose"                          
                             BorderThickness="0"
@@ -215,7 +154,7 @@
 
                     <TextBlock Text="HotelHub"
                                Foreground="White"
-                               FontSize="25"
+                               FontSize="20"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center" Margin="0,5,0,0"/>
@@ -264,10 +203,6 @@
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
 
-                    <!--<customcontrols:BindablePasswordBox x:Name="pass" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                        Height="28"                            
-                                                        Margin="0,5,0,0">
-                    </customcontrols:BindablePasswordBox>-->
 
                     <TextBox x:Name="txtPassword" 
                              Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
@@ -295,22 +230,8 @@
                                FontFamily="Montserrat"                             
                                Margin="0,10,0,0"
                                TextWrapping="Wrap"/>
-                    <Grid>
-                        <TextBlock Text="Dark Mode"
-                               Foreground="White"
-                               FontSize="13"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               Margin="25,5,80,0"/>
-
-                        <CheckBox Margin="135,4,0,0"
-                                  Name="btnTheme" Checked="btnTheme_Checked" Unchecked="btnTheme_Unchecked" />
 
 
-                    </Grid>
-                   
 
                     <Button x:Name="btnLogin" 
                             Command="{Binding LoginCommand}"
@@ -343,7 +264,7 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-               
+
                     </Button>
 
                     <StackPanel Orientation="Horizontal"
@@ -352,14 +273,14 @@
 
                         <TextBlock Name="fogotPS" Text="Forgot Password?"
                                Foreground="MediumSeaGreen"
-                               FontSize="12"
+                              FontSize="14"
                                FontWeight="Medium"
                                FontFamily="Montserrat"/>
 
                         <TextBlock Text="Registration"
                                    Name="Registr"
                                Foreground="White"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Cursor="Hand"
@@ -368,18 +289,18 @@
 
                     </StackPanel>
 
-                    
-                       
+
+
                 </StackPanel>
-                
-                
+
+
             </Grid>
 
 
         </Border>
-        
-        
+
+
     </Border>
-    
+
 
 </Window>

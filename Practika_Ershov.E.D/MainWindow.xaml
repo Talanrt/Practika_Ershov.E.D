@@ -4,13 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practika_Ershov.E.D"
+        xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
        WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True" HorizontalAlignment="Center">
+        AllowsTransparency="True" HorizontalAlignment="Center" Loaded="Window_Loaded"
+        >
+
+    <Window.Resources>
+        <Style TargetType="DataGrid" x:Key="dataGrid">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="RowBackground" Value="Transparent" />
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="GridLinesVisibility" Value="None" />
+        </Style>
+        <Style TargetType="DataGridColumnHeader" >
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridColumnHeader">
+                        <Border Background="MediumSlateBlue">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+    </Window.Resources>
     <Border x:Name="myBorder2" CornerRadius="12">
 
         <Border.Background>
@@ -21,22 +47,156 @@
 
         <Border CornerRadius="10"                    
             BorderThickness="2"
-            Opacity="0.95">
+            Opacity="0.95"
+            Style="{DynamicResource DarkTheme}">
 
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="Green" Offset="0"/>
-                    <GradientStop Color="MediumSeaGreen" Offset="0.75"/>
-                    <GradientStop Color="MediumSlateBlue" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
 
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="MediumSeaGreen" Offset="0"/>
-                    <GradientStop Color="#1B1448" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
+
+
+            <Grid>
+
+
+                <Border Grid.Row="1"  Background="MediumSeaGreen" CornerRadius="0 50 50 0" Margin="0,39,598,27">
+                    <StackPanel DockPanel.Dock="Top">
+
+                        <Button x:Name="CheckHotels"  Click="CheckHotels_Click" Style="{DynamicResource MenuBtn}" Margin="0,120,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Style="{DynamicResource menuBtnIcon}" Kind="Home"  HorizontalAlignment="Left"/>
+                                <TextBlock Text="View hotels"/>
+                            </StackPanel>
+
+                        </Button>
+
+
+
+                        
+
+
+
+                        <Button x:Name="btnLogout"  Style="{DynamicResource MenuBtn}" Click="btnLogout_Click" VerticalAlignment="Bottom" DockPanel.Dock="Bottom"  Margin="0,30,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Style="{DynamicResource menuBtnIcon}" Kind="Logout" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Logout"/>
+                            </StackPanel>
+
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="border_main" Background="MediumSeaGreen" CornerRadius="50 50 50 50" Margin="227,39,46,23">
+
+                    <Grid>
+
+
+                        <Button x:Name="First_hotel" Margin="5,50,5,273">
+                            <StackPanel Orientation="Horizontal">
+                                
+                                <TextBlock Text="MORRIS ADJMI ARCHITECTS WYTHE HOTEL" Height="24" Width="234"/>
+                            </StackPanel>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="MediumSlateBlue"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="MediumSpringGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="500" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="second_hotel" Margin="5,111,5,212">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="The Chedi Andermatt 5" Height="24" Width="132"/>
+                            </StackPanel>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="MediumSlateBlue"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="MediumSpringGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="500" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="third_hotel" Margin="5,172,5,151">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="CROWN TOWERS PERTH" Height="24" Width="132"/>
+                            </StackPanel>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="MediumSlateBlue"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="MediumSpringGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="500" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="foth_hotel" Margin="5,233,5,89">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Burj Al Arab Jumeirah" Height="24" Width="117"/>
+                            </StackPanel>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="MediumSlateBlue"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="MediumSpringGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="500" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Border>
+
+            </Grid>
         </Border>
     </Border>
 </Window>

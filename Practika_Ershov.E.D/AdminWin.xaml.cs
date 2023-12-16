@@ -236,5 +236,11 @@ namespace Practika_Ershov.E.D
                 Delete_User(userId);
             }
         }
+
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWin set= new SettingsWin();
+            set.Show();
+        }
     }
 }

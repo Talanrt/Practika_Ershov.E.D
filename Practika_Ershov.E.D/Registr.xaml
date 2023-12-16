@@ -29,6 +29,8 @@
             
             <Grid Height="546" VerticalAlignment="Bottom">
 
+                
+                
                 <Button x:Name="btnClose"                          
                             BorderThickness="0"
                             Content="X"
